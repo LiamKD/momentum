@@ -1,5 +1,7 @@
+const path = require("path");
+
 const showRegisterPage = (req, res) => {
-    res.send("Register Page");
+    res.sendFile(path.join(__dirname, "../public/register.html"));
 };
 
 module.exports = {
