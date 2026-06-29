@@ -63,13 +63,25 @@ const loginUser = (req, res) => {
             return res.send("Invalid email or password.");
         }
 
-        res.send(`Welcome back, ${user.first_name}!`);
+        req.session.userId = user.user_id;
+        req.session.firstName = user.first_name;
+
+        res.redirect("/dashboard");
     });
+};
+
+const showDashboard = (req, res) => {
+    if (!req.session.userId) {
+        return res.redirect("/login");
+    }
+
+    res.send(`Welcome to your dashboard, ${req.session.firstName}!`);
 };
 
 module.exports = {
     showRegisterPage,
     registerUser,
     showLoginPage,
-    loginUser
+    loginUser,
+    showDashboard
 };
