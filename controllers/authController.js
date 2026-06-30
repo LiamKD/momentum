@@ -75,7 +75,7 @@ const showDashboard = (req, res) => {
         return res.redirect("/login");
     }
 
-    res.send(`Welcome to your dashboard, ${req.session.firstName}!`);
+    res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 };
 
 module.exports = {
